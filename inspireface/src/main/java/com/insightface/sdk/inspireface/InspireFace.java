@@ -126,6 +126,13 @@ public class InspireFace extends TypeDefine {
     public static native boolean GlobalLaunch(String resourcePath);
 
     /**
+     * Global reload
+     * @param resourcePath Path to the model pack file
+     * @return true if success, false otherwise
+     */
+    public static native boolean GlobalReload(String resourcePath);
+
+    /**
      * Global terminate
      * @return true if success, false otherwise
      */
