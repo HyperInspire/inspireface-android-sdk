@@ -10,7 +10,7 @@ android {
     defaultConfig {
         minSdk 24
         versionCode 1
-        versionName "1.2.3.post4"
+        versionName "1.2.3.post5"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -62,7 +62,7 @@ afterEvaluate {
                 from components.release // release (jitpack will not be used)
                 groupId = 'com.github.HyperInspire' // groupId Arbitrary, this is the dependent library group id
                 artifactId = 'inspireface-android-sdk'  // artifactId Arbitrary, dependent library name (jitpack will not use)
-                version = '1.2.3.post4' // The current version depends on the library version number, which is not used by this jitpack, but only by us developers
+                version = '1.2.3.post5' // The current version depends on the library version number, which is not used by this jitpack, but only by us developers
             }
         }
     }
