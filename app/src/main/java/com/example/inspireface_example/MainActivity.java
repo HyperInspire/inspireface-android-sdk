@@ -1,9 +1,6 @@
 package com.example.inspireface_example;
 
-import android.content.Context;
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -15,26 +12,17 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.insightface.sdk.inspireface.InspireFace;
 import com.insightface.sdk.inspireface.base.CustomParameter;
-import com.insightface.sdk.inspireface.base.FaceAttributeResult;
-import com.insightface.sdk.inspireface.base.FaceEmotionResult;
 import com.insightface.sdk.inspireface.base.FaceFeature;
 import com.insightface.sdk.inspireface.base.FaceFeatureIdentity;
-import com.insightface.sdk.inspireface.base.FaceInteractionState;
-import com.insightface.sdk.inspireface.base.FaceInteractionsActions;
-import com.insightface.sdk.inspireface.base.FaceMaskConfidence;
 import com.insightface.sdk.inspireface.base.FaceQualityConfidence;
 import com.insightface.sdk.inspireface.base.FeatureHubConfiguration;
 import com.insightface.sdk.inspireface.base.ImageStream;
 import com.insightface.sdk.inspireface.base.InspireFaceVersion;
 import com.insightface.sdk.inspireface.base.MultipleFaceData;
-import com.insightface.sdk.inspireface.base.Point2f;
-import com.insightface.sdk.inspireface.base.RGBLivenessConfidence;
-import com.insightface.sdk.inspireface.base.SearchTopKResults;
 import com.insightface.sdk.inspireface.base.Session;
 import com.insightface.sdk.inspireface.utils.SDKUtils;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,161 +30,79 @@ public class MainActivity extends AppCompatActivity {
 
     void test() {
         InspireFaceVersion version = InspireFace.QueryInspireFaceVersion();
-        Log.i(TAG, "InspireFace Version: " + version.major + "." + version.minor + "." + version.patch);
-        String dbPath = "/storage/emulated/0/Android/data/com.example.inspireface_example/files/f.db";
-        FeatureHubConfiguration configuration = InspireFace.CreateFeatureHubConfiguration()
-                .setEnablePersistence(false)
-                .setPersistenceDbPath(dbPath)
-                .setSearchThreshold(0.42f)
-                .setSearchMode(InspireFace.SEARCH_MODE_EXHAUSTIVE)
-                .setPrimaryKeyMode(InspireFace.PK_AUTO_INCREMENT);
-
-        boolean enableStatus = InspireFace.FeatureHubDataEnable(configuration);
-        Log.d(TAG, "Enable feature hub data status: " + enableStatus);
-        InspireFace.FeatureHubFaceSearchThresholdSetting(0.42f);
-
-        boolean launchStatus = InspireFace.GlobalLaunch(this, InspireFace.PIKACHU);
-        Log.d(TAG, "Launch status: " + launchStatus);
-        if (!launchStatus) {
+        Log.i(TAG, "InspireFace native version: " + version.major + "." + version.minor + "." + version.patch);
+        if (!InspireFace.GlobalLaunch(this, InspireFace.PIKACHU)) {
             Log.e(TAG, "Failed to launch InspireFace");
             return;
         }
-        CustomParameter parameter = InspireFace.CreateCustomParameter()
-                .enableRecognition(true)
-                .enableFaceQuality(true)
-                .enableFaceAttribute(true)
-                .enableInteractionLiveness(true)
-                .enableLiveness(true)
-                .enableMaskDetect(true)
-                .enableFaceEmotion(true);
-        Session session = InspireFace.CreateSession(parameter, InspireFace.DETECT_MODE_ALWAYS_DETECT, 10, -1, -1);
-        Log.i(TAG, "session handle: " + session.handle);
-        InspireFace.SetTrackPreviewSize(session, 320);
-        InspireFace.SetFaceDetectThreshold(session, 0.5f);
-        InspireFace.SetFilterMinimumFacePixelSize(session, 0);
-
-        Bitmap img = SDKUtils.getImageFromAssetsFile(this, "inspireface/kun.jpg");
-        ImageStream stream = InspireFace.CreateImageStreamFromBitmap(img, InspireFace.CAMERA_ROTATION_0);
-        Log.i(TAG, "stream handle: " + stream.handle);
-        InspireFace.WriteImageStreamToFile(stream, "/storage/emulated/0/Android/data/com.example.inspireface_example/files/out.jpg");
-
-        MultipleFaceData multipleFaceData = InspireFace.ExecuteFaceTrack(session, stream);
-        Log.i(TAG, "Face num: " + multipleFaceData.detectedNum);
-
-        if (multipleFaceData.detectedNum > 0) {
-            Point2f[] lmk = InspireFace.GetFaceDenseLandmarkFromFaceToken(multipleFaceData.tokens[0]);
-            for (Point2f p : lmk) {
-                Log.i(TAG, p.x + ", " + p.y);
-            }
-            FaceFeature feature = InspireFace.ExtractFaceFeature(session, stream, multipleFaceData.tokens[0]);
-            Log.i(TAG, "Feature size: " + feature.data.length);
-            String strFt = "";
-            for (int i = 0; i < feature.data.length; i++) {
-                strFt = strFt + feature.data[i] + ", ";
-            }
-            Log.i(TAG, strFt);
-
-            for (int i = 0; i < 10; i++) {
-                FaceFeatureIdentity identity = FaceFeatureIdentity.create(-1, feature);
-                boolean succ = InspireFace.FeatureHubInsertFeature(identity);
-                if (succ) {
-                    Log.i(TAG, "Allocation ID: " + identity.id);
-                }
-            }
-
-            FaceFeatureIdentity searched = InspireFace.FeatureHubFaceSearch(feature);
-            Log.i(TAG, "Searched id: " + searched.id + ", Confidence: " + searched.searchConfidence);
-
-            SearchTopKResults topKResults = InspireFace.FeatureHubFaceSearchTopK(feature, 10);
-            for (int i = 0; i < topKResults.num; i++) {
-                Log.i(TAG, "TopK id: " + topKResults.ids[i] + ", Confidence: " + topKResults.confidence[i]);
-            }
-
-            FaceFeature newFeature = new FaceFeature();
-            Log.i(TAG, "Feature length: " + InspireFace.GetFeatureLength());
-            newFeature.data = new float[InspireFace.GetFeatureLength()];
-            FaceFeatureIdentity identity = FaceFeatureIdentity.create(8, newFeature);
-            boolean updateSucc = InspireFace.FeatureHubFaceUpdate(identity);
-            if (updateSucc) {
-                Log.i(TAG, "Update feature success: " + 8);
-            }
-            boolean removeSucc = InspireFace.FeatureHubFaceRemove(4);
-            if (removeSucc) {
-                Log.i(TAG, "Remove feature success: " + 4);
-            }
-            SearchTopKResults topkAgn = InspireFace.FeatureHubFaceSearchTopK(feature, 10);
-            for (int i = 0; i < topkAgn.num; i++) {
-                Log.i(TAG, "Agn TopK id: " + topkAgn.ids[i] + ", Confidence: " + topKResults.confidence[i]);
-            }
-
-            FaceFeatureIdentity queryIdentity = InspireFace.FeatureHubGetFaceIdentity(4);
-            if (queryIdentity != null) {
-                Log.e(TAG, "query id: " + queryIdentity.id);
-            }
-            queryIdentity = InspireFace.FeatureHubGetFaceIdentity(2);
-            if (queryIdentity != null) {
-                strFt = "";
-                for (int i = 0; i < queryIdentity.feature.data.length; i++) {
-                    strFt = strFt + queryIdentity.feature.data[i] + ", ";
-                }
-                Log.i(TAG, "query id: " + queryIdentity.id);
-                Log.i(TAG, strFt);
-
-                float comp = InspireFace.FaceComparison(queryIdentity.feature, feature);
-                Log.i(TAG, "Comparison: " + comp);
-            }
-            CustomParameter pipelineNeedParam = InspireFace.CreateCustomParameter()
+        Session session = null;
+        ImageStream stream = null;
+        Bitmap image = null;
+        boolean hubEnabled = false;
+        try {
+            CustomParameter parameter = InspireFace.CreateCustomParameter()
+                    .enableRecognition(true)
                     .enableFaceQuality(true)
-                    .enableLiveness(true)
-                    .enableMaskDetect(true)
                     .enableFaceAttribute(true)
                     .enableInteractionLiveness(true)
+                    .enableLiveness(true)
+                    .enableMaskDetect(true)
                     .enableFaceEmotion(true);
-            boolean succPipe = InspireFace.MultipleFacePipelineProcess(session, stream, multipleFaceData, pipelineNeedParam);
-            if (succPipe) {
-                Log.i(TAG, "Exec pipeline success");
-                RGBLivenessConfidence rgbLivenessConfidence = InspireFace.GetRGBLivenessConfidence(session);
-                Log.i(TAG, "rgbLivenessConfidence: " + rgbLivenessConfidence.confidence[0]);
-                FaceQualityConfidence faceQualityConfidence = InspireFace.GetFaceQualityConfidence(session);
-                Log.i(TAG, "faceQualityConfidence: " + faceQualityConfidence.confidence[0]);
-                FaceMaskConfidence faceMaskConfidence = InspireFace.GetFaceMaskConfidence(session);
-                Log.i(TAG, "faceMaskConfidence: " + faceMaskConfidence.confidence[0]);
-                FaceInteractionState faceInteractionState = InspireFace.GetFaceInteractionStateResult(session);
-                Log.i(TAG, "Left eye status confidence: " + faceInteractionState.leftEyeStatusConfidence[0]);
-                Log.i(TAG, "Right eye status confidence: " + faceInteractionState.rightEyeStatusConfidence[0]);
-                FaceInteractionsActions faceInteractionsActions = InspireFace.GetFaceInteractionActionsResult(session);
-                Log.i(TAG, "Normal: " + faceInteractionsActions.normal[0]);
-                Log.i(TAG, "Shake: " + faceInteractionsActions.shake[0]);
-                Log.i(TAG, "Jaw open: " + faceInteractionsActions.jawOpen[0]);
-                Log.i(TAG, "Head raise: " + faceInteractionsActions.headRaise[0]);
-                Log.i(TAG, "Blink: " + faceInteractionsActions.blink[0]);
-                FaceAttributeResult faceAttributeResult = InspireFace.GetFaceAttributeResult(session);
-                Log.i(TAG, "Race: " + faceAttributeResult.race[0]);
-                Log.i(TAG, "Gender: " + faceAttributeResult.gender[0]);
-                Log.i(TAG, "Age bracket: " + faceAttributeResult.ageBracket[0]);
-                FaceEmotionResult faceEmotionResult = InspireFace.GetFaceEmotionResult(session);
-                Log.i(TAG, "Face emotion: " + faceEmotionResult.emotion[0]);
-            } else {
+            session = InspireFace.CreateSession(parameter, InspireFace.DETECT_MODE_ALWAYS_DETECT, 10, -1, -1);
+            if (session == null) throw new IllegalStateException("Failed to create session");
+            InspireFace.SetTrackPreviewSize(session, 320);
+            InspireFace.SetFaceDetectThreshold(session, 0.5f);
+            InspireFace.SetFilterMinimumFacePixelSize(session, 0);
+            image = SDKUtils.getImageFromAssetsFile(this, "inspireface/kun.jpg");
+            if (image == null) throw new IllegalStateException("Failed to load sample image");
+            stream = InspireFace.CreateImageStreamFromBitmap(image, InspireFace.CAMERA_ROTATION_0);
+            if (stream == null) throw new IllegalStateException("Failed to create image stream");
 
-                Log.e(TAG, "Exec pipeline fail");
+            MultipleFaceData faces = InspireFace.ExecuteFaceTrack(session, stream);
+            if (faces == null) throw new IllegalStateException("Face detection failed");
+            Log.i(TAG, "Face count: " + faces.detectedNum);
+            if (faces.detectedNum == 0) return;
+            Log.i(TAG, "First face track count: " + faces.trackCounts[0]);
+
+            FaceFeature feature = InspireFace.ExtractFaceFeature(session, stream, faces.tokens[0]);
+            if (feature == null) throw new IllegalStateException("Feature extraction failed");
+            FeatureHubConfiguration config = InspireFace.CreateFeatureHubConfiguration()
+                    .setEnablePersistence(false)
+                    .setPersistenceDbPath(new java.io.File(getFilesDir(), "faces.db").getAbsolutePath())
+                    .setSearchThreshold(0.42f)
+                    .setSearchMode(InspireFace.SEARCH_MODE_EXHAUSTIVE)
+                    .setPrimaryKeyMode(InspireFace.PK_AUTO_INCREMENT);
+            hubEnabled = InspireFace.FeatureHubDataEnable(config);
+            if (!hubEnabled) throw new IllegalStateException("Failed to enable FeatureHub");
+            FaceFeatureIdentity identity = FaceFeatureIdentity.create(-1, feature);
+            if (!InspireFace.FeatureHubInsertFeature(identity)) {
+                throw new IllegalStateException("Failed to insert feature");
             }
+            FaceFeatureIdentity match = InspireFace.FeatureHubFaceSearch(feature);
+            if (match != null && match.id != -1) {
+                Log.i(TAG, "Matched ID: " + match.id + ", confidence: " + match.searchConfidence);
+            }
+            if (InspireFace.MultipleFacePipelineProcess(session, stream, faces, parameter)) {
+                FaceQualityConfidence quality = InspireFace.GetFaceQualityConfidence(session);
+                if (quality != null && quality.num > 0) Log.i(TAG, "Quality: " + quality.confidence[0]);
+            }
+            Bitmap crop = InspireFace.GetFaceAlignmentImage(session, stream, faces.tokens[0]);
+            if (crop != null) {
+                try {
+                    SDKUtils.saveBitmap(getFilesDir().getAbsolutePath(), "crop", crop);
+                } finally {
+                    crop.recycle();
+                }
+            }
+        } catch (RuntimeException | IOException error) {
+            Log.e(TAG, "SDK example failed", error);
+        } finally {
+            if (stream != null) InspireFace.ReleaseImageStream(stream);
+            if (session != null) InspireFace.ReleaseSession(session);
+            if (hubEnabled) InspireFace.FeatureHubDataDisable();
+            if (image != null) image.recycle();
+            InspireFace.GlobalTerminate();
         }
-
-        int count = InspireFace.FeatureHubGetFaceCount();
-        Log.i(TAG, "Face count: " + count);
-
-        Bitmap crop = InspireFace.GetFaceAlignmentImage(session, stream, multipleFaceData.tokens[0]);
-        try {
-            SDKUtils.saveBitmap("/storage/emulated/0/Android/data/com.example.inspireface_example/files/", "crop", crop);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        InspireFace.ReleaseImageStream(stream);
-        InspireFace.ReleaseSession(session);
-
-
-        InspireFace.FeatureHubDataDisable();
     }
 
     @Override

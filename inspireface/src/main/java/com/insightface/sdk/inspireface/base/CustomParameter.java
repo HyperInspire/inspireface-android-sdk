@@ -9,10 +9,18 @@ public class CustomParameter {
     public int enableFaceQuality = 0;               // Enable face quality detection
     public int enableFaceAttribute = 0;             // Enable face attribute detection
     public int enableInteractionLiveness = 0;       // Enable interaction liveness detection
+    /** Legacy C option, retained independently from pose; current engines may ignore this flag. */
+    public int enableDetectModeLandmark = 0;
     public int enableFacePose = 0;                  // Enable face pose detection
     public int enableFaceEmotion = 0;                   // Enable face emotion prediction
 
     public CustomParameter() {}
+
+    /** Set the legacy detection-mode landmark flag independently from face pose. */
+    public CustomParameter enableDetectModeLandmark(boolean enable) {
+        this.enableDetectModeLandmark = enable ? 1 : 0;
+        return this;
+    }
 
     /**
      * Enable face attribute detection

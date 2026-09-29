@@ -1,2 +1,3 @@
-InspireFace Version: 1.2.3.post1
-Model: t4
+InspireFace Android SDK: 1.2.4.post1
+InspireFace Native Version: 1.2.4
+Model: t4 (bundled Pikachu/Megatron retained; the native SDK archive contains no model packs)

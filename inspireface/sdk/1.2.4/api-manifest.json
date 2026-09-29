@@ -1,0 +1,997 @@
+{
+  "HFGetErrorMessage": {
+    "return": "long",
+    "arguments": [
+      "long errorCode",
+      "ByteBuffer buffer",
+      "int bufferSize",
+      "int[] requiredSize"
+    ],
+    "custom": false
+  },
+  "HFCreateImageStream": {
+    "return": "long",
+    "arguments": [
+      "HFImageData data",
+      "long[] handle"
+    ],
+    "custom": true
+  },
+  "HFCreateImageStreamEmpty": {
+    "return": "long",
+    "arguments": [
+      "long[] handle"
+    ],
+    "custom": true
+  },
+  "HFImageStreamSetBuffer": {
+    "return": "long",
+    "arguments": [
+      "long handle",
+      "ByteBuffer buffer",
+      "int width",
+      "int height"
+    ],
+    "custom": true
+  },
+  "HFImageStreamSetRotation": {
+    "return": "long",
+    "arguments": [
+      "long handle",
+      "int rotation"
+    ],
+    "custom": false
+  },
+  "HFImageStreamSetFormat": {
+    "return": "long",
+    "arguments": [
+      "long handle",
+      "int format"
+    ],
+    "custom": true
+  },
+  "HFReleaseImageStream": {
+    "return": "long",
+    "arguments": [
+      "long streamHandle"
+    ],
+    "custom": true
+  },
+  "HFCreateImageBitmap": {
+    "return": "long",
+    "arguments": [
+      "HFImageBitmapData data",
+      "long[] handle"
+    ],
+    "custom": false
+  },
+  "HFCreateImageBitmapFromFilePath": {
+    "return": "long",
+    "arguments": [
+      "String filePath",
+      "int channels",
+      "long[] handle"
+    ],
+    "custom": false
+  },
+  "HFImageBitmapCopy": {
+    "return": "long",
+    "arguments": [
+      "long handle",
+      "long[] copyHandle"
+    ],
+    "custom": false
+  },
+  "HFReleaseImageBitmap": {
+    "return": "long",
+    "arguments": [
+      "long handle"
+    ],
+    "custom": false
+  },
+  "HFCreateImageStreamFromImageBitmap": {
+    "return": "long",
+    "arguments": [
+      "long handle",
+      "int rotation",
+      "long[] streamHandle"
+    ],
+    "custom": true
+  },
+  "HFCreateImageBitmapFromImageStreamProcess": {
+    "return": "long",
+    "arguments": [
+      "long streamHandle",
+      "long[] handle",
+      "int is_rotate",
+      "float scale"
+    ],
+    "custom": false
+  },
+  "HFImageBitmapWriteToFile": {
+    "return": "long",
+    "arguments": [
+      "long handle",
+      "String filePath"
+    ],
+    "custom": false
+  },
+  "HFImageBitmapDrawRect": {
+    "return": "long",
+    "arguments": [
+      "long handle",
+      "HFaceRect rect",
+      "HColor color",
+      "int thickness"
+    ],
+    "custom": false
+  },
+  "HFImageBitmapDrawCircleF": {
+    "return": "long",
+    "arguments": [
+      "long handle",
+      "HPoint2f point",
+      "int radius",
+      "HColor color",
+      "int thickness"
+    ],
+    "custom": false
+  },
+  "HFImageBitmapDrawCircle": {
+    "return": "long",
+    "arguments": [
+      "long handle",
+      "HPoint2i point",
+      "int radius",
+      "HColor color",
+      "int thickness"
+    ],
+    "custom": false
+  },
+  "HFImageBitmapGetData": {
+    "return": "long",
+    "arguments": [
+      "long handle",
+      "HFImageBitmapData data"
+    ],
+    "custom": false
+  },
+  "HFImageBitmapShow": {
+    "return": "long",
+    "arguments": [
+      "long handle",
+      "String title",
+      "int delay"
+    ],
+    "custom": false
+  },
+  "HFValidateResourcePack": {
+    "return": "int",
+    "arguments": [
+      "String resourcePath",
+      "HFResourcePackInfo info"
+    ],
+    "custom": false
+  },
+  "HFLaunchInspireFace": {
+    "return": "long",
+    "arguments": [
+      "String resourcePath"
+    ],
+    "custom": false
+  },
+  "HFReloadInspireFace": {
+    "return": "long",
+    "arguments": [
+      "String resourcePath"
+    ],
+    "custom": false
+  },
+  "HFTerminateInspireFace": {
+    "return": "long",
+    "arguments": [],
+    "custom": false
+  },
+  "HFQueryInspireFaceLaunchStatus": {
+    "return": "long",
+    "arguments": [
+      "int[] status"
+    ],
+    "custom": false
+  },
+  "HFQueryExpansiveHardwareRGACompileOption": {
+    "return": "long",
+    "arguments": [
+      "int[] enable"
+    ],
+    "custom": false
+  },
+  "HFSetExpansiveHardwareRockchipDmaHeapPath": {
+    "return": "long",
+    "arguments": [
+      "String path"
+    ],
+    "custom": false
+  },
+  "HFQueryExpansiveHardwareRockchipDmaHeapPath": {
+    "return": "long",
+    "arguments": [
+      "ByteBuffer path"
+    ],
+    "custom": false
+  },
+  "HFQueryExpansiveHardwareRockchipDmaHeapPathWithSize": {
+    "return": "long",
+    "arguments": [
+      "ByteBuffer path",
+      "int bufferSize"
+    ],
+    "custom": false
+  },
+  "HFSwitchImageProcessingBackend": {
+    "return": "long",
+    "arguments": [
+      "int backend"
+    ],
+    "custom": false
+  },
+  "HFSetImageProcessAlignedWidth": {
+    "return": "long",
+    "arguments": [
+      "int width"
+    ],
+    "custom": false
+  },
+  "HFSetAppleCoreMLInferenceMode": {
+    "return": "long",
+    "arguments": [
+      "int mode"
+    ],
+    "custom": false
+  },
+  "HFSetCudaDeviceId": {
+    "return": "long",
+    "arguments": [
+      "int device_id"
+    ],
+    "custom": false
+  },
+  "HFGetCudaDeviceId": {
+    "return": "long",
+    "arguments": [
+      "int[] device_id"
+    ],
+    "custom": false
+  },
+  "HFPrintCudaDeviceInfo": {
+    "return": "long",
+    "arguments": [],
+    "custom": false
+  },
+  "HFGetNumCudaDevices": {
+    "return": "long",
+    "arguments": [
+      "int[] num_devices"
+    ],
+    "custom": false
+  },
+  "HFCheckCudaDeviceSupport": {
+    "return": "long",
+    "arguments": [
+      "int[] is_support"
+    ],
+    "custom": false
+  },
+  "HFSwitchLandmarkEngine": {
+    "return": "long",
+    "arguments": [
+      "int engine"
+    ],
+    "custom": false
+  },
+  "HFQuerySupportedPixelLevelsForFaceDetection": {
+    "return": "long",
+    "arguments": [
+      "HFFaceDetectPixelList pixel_levels"
+    ],
+    "custom": false
+  },
+  "HFCreateInspireFaceSession": {
+    "return": "long",
+    "arguments": [
+      "HFSessionCustomParameter parameter",
+      "int detectMode",
+      "int maxDetectFaceNum",
+      "int detectPixelLevel",
+      "int trackByDetectModeFPS",
+      "long[] handle"
+    ],
+    "custom": false
+  },
+  "HFCreateInspireFaceSessionOptional": {
+    "return": "long",
+    "arguments": [
+      "int customOption",
+      "int detectMode",
+      "int maxDetectFaceNum",
+      "int detectPixelLevel",
+      "int trackByDetectModeFPS",
+      "long[] handle"
+    ],
+    "custom": false
+  },
+  "HFCreateInspireFaceSessionV2": {
+    "return": "int",
+    "arguments": [
+      "HFSessionConfigV2 config",
+      "long[] handle"
+    ],
+    "custom": false
+  },
+  "HFReleaseInspireFaceSession": {
+    "return": "long",
+    "arguments": [
+      "long handle"
+    ],
+    "custom": false
+  },
+  "HFSessionClearTrackingFace": {
+    "return": "long",
+    "arguments": [
+      "long session"
+    ],
+    "custom": false
+  },
+  "HFSessionSetTrackLostRecoveryMode": {
+    "return": "long",
+    "arguments": [
+      "long session",
+      "int enable"
+    ],
+    "custom": false
+  },
+  "HFSessionSetLightTrackConfidenceThreshold": {
+    "return": "long",
+    "arguments": [
+      "long session",
+      "float value"
+    ],
+    "custom": false
+  },
+  "HFSessionSetTrackPreviewSize": {
+    "return": "long",
+    "arguments": [
+      "long session",
+      "int previewSize"
+    ],
+    "custom": false
+  },
+  "HFSessionGetTrackPreviewSize": {
+    "return": "long",
+    "arguments": [
+      "long session",
+      "int[] previewSize"
+    ],
+    "custom": false
+  },
+  "HFSessionSetFilterMinimumFacePixelSize": {
+    "return": "long",
+    "arguments": [
+      "long session",
+      "int minSize"
+    ],
+    "custom": false
+  },
+  "HFSessionSetFaceDetectThreshold": {
+    "return": "long",
+    "arguments": [
+      "long session",
+      "float threshold"
+    ],
+    "custom": false
+  },
+  "HFSessionSetTrackModeSmoothRatio": {
+    "return": "long",
+    "arguments": [
+      "long session",
+      "float ratio"
+    ],
+    "custom": false
+  },
+  "HFSessionSetTrackModeNumSmoothCacheFrame": {
+    "return": "long",
+    "arguments": [
+      "long session",
+      "int num"
+    ],
+    "custom": false
+  },
+  "HFSessionSetTrackModeDetectInterval": {
+    "return": "long",
+    "arguments": [
+      "long session",
+      "int num"
+    ],
+    "custom": false
+  },
+  "HFSessionSetLandmarkAugmentationNum": {
+    "return": "long",
+    "arguments": [
+      "long session",
+      "int num"
+    ],
+    "custom": false
+  },
+  "HFExecuteFaceTrack": {
+    "return": "long",
+    "arguments": [
+      "long session",
+      "long streamHandle",
+      "HFMultipleFaceData results"
+    ],
+    "custom": false
+  },
+  "HFExecuteFaceTrackSnapshot": {
+    "return": "long",
+    "arguments": [
+      "long session",
+      "long streamHandle",
+      "long[] snapshot"
+    ],
+    "custom": false
+  },
+  "HFGetFaceResultSnapshotData": {
+    "return": "long",
+    "arguments": [
+      "long snapshot",
+      "HFMultipleFaceData results"
+    ],
+    "custom": false
+  },
+  "HFReleaseFaceResultSnapshot": {
+    "return": "long",
+    "arguments": [
+      "long snapshot"
+    ],
+    "custom": false
+  },
+  "HFGetDefaultFaceCaptureConfig": {
+    "return": "long",
+    "arguments": [
+      "HFFaceCaptureConfig config"
+    ],
+    "custom": false
+  },
+  "HFCreateFaceCaptureSession": {
+    "return": "long",
+    "arguments": [
+      "long session",
+      "HFFaceCaptureConfig config",
+      "long[] captureSession"
+    ],
+    "custom": false
+  },
+  "HFUpdateFaceCaptureSession": {
+    "return": "long",
+    "arguments": [
+      "long captureSession",
+      "long stream",
+      "long frameId",
+      "long timestampMs",
+      "HFFaceCaptureProgress progress"
+    ],
+    "custom": false
+  },
+  "HFUpdateFaceCaptureSessionWithSnapshot": {
+    "return": "long",
+    "arguments": [
+      "long captureSession",
+      "long stream",
+      "long snapshot",
+      "long frameId",
+      "long timestampMs",
+      "HFFaceCaptureProgress progress"
+    ],
+    "custom": false
+  },
+  "HFGetFaceCaptureResults": {
+    "return": "long",
+    "arguments": [
+      "long captureSession",
+      "HFFaceCaptureResult[] results",
+      "int capacity",
+      "int[] resultCount"
+    ],
+    "custom": false
+  },
+  "HFFinishFaceCaptureSession": {
+    "return": "long",
+    "arguments": [
+      "long captureSession",
+      "HFFaceCaptureProgress progress"
+    ],
+    "custom": false
+  },
+  "HFResetFaceCaptureSession": {
+    "return": "long",
+    "arguments": [
+      "long captureSession"
+    ],
+    "custom": false
+  },
+  "HFReleaseFaceCaptureSession": {
+    "return": "long",
+    "arguments": [
+      "long captureSession"
+    ],
+    "custom": false
+  },
+  "HFSessionLastFaceDetectionGetDebugPreviewImageSize": {
+    "return": "long",
+    "arguments": [
+      "long session",
+      "int[] size"
+    ],
+    "custom": false
+  },
+  "HFCopyFaceBasicToken": {
+    "return": "long",
+    "arguments": [
+      "HFFaceBasicToken token",
+      "ByteBuffer buffer",
+      "int bufferSize"
+    ],
+    "custom": false
+  },
+  "HFGetFaceBasicTokenSize": {
+    "return": "long",
+    "arguments": [
+      "int[] bufferSize"
+    ],
+    "custom": false
+  },
+  "HFGetNumOfFaceDenseLandmark": {
+    "return": "long",
+    "arguments": [
+      "int[] num"
+    ],
+    "custom": false
+  },
+  "HFGetFaceDenseLandmarkFromFaceToken": {
+    "return": "long",
+    "arguments": [
+      "HFFaceBasicToken singleFace",
+      "HPoint2f[] landmarks",
+      "int num"
+    ],
+    "custom": false
+  },
+  "HFGetFaceFiveKeyPointsFromFaceToken": {
+    "return": "long",
+    "arguments": [
+      "HFFaceBasicToken singleFace",
+      "HPoint2f[] landmarks",
+      "int num"
+    ],
+    "custom": false
+  },
+  "HFSessionSetEnableTrackCostSpend": {
+    "return": "long",
+    "arguments": [
+      "long session",
+      "int value"
+    ],
+    "custom": false
+  },
+  "HFSessionPrintTrackCostSpend": {
+    "return": "long",
+    "arguments": [
+      "long session"
+    ],
+    "custom": false
+  },
+  "HFFaceFeatureExtract": {
+    "return": "long",
+    "arguments": [
+      "long session",
+      "long streamHandle",
+      "HFFaceBasicToken singleFace",
+      "HFFaceFeature feature"
+    ],
+    "custom": false
+  },
+  "HFFaceFeatureExtractTo": {
+    "return": "long",
+    "arguments": [
+      "long session",
+      "long streamHandle",
+      "HFFaceBasicToken singleFace",
+      "HFFaceFeature feature"
+    ],
+    "custom": false
+  },
+  "HFFaceFeatureExtractCpy": {
+    "return": "long",
+    "arguments": [
+      "long session",
+      "long streamHandle",
+      "HFFaceBasicToken singleFace",
+      "ByteBuffer feature"
+    ],
+    "custom": false
+  },
+  "HFCreateFaceFeature": {
+    "return": "long",
+    "arguments": [
+      "HFFaceFeature feature"
+    ],
+    "custom": true
+  },
+  "HFReleaseFaceFeature": {
+    "return": "long",
+    "arguments": [
+      "HFFaceFeature feature"
+    ],
+    "custom": true
+  },
+  "HFFaceGetFaceAlignmentImage": {
+    "return": "long",
+    "arguments": [
+      "long session",
+      "long streamHandle",
+      "HFFaceBasicToken singleFace",
+      "long[] handle"
+    ],
+    "custom": false
+  },
+  "HFFaceFeatureExtractWithAlignmentImage": {
+    "return": "long",
+    "arguments": [
+      "long session",
+      "long streamHandle",
+      "HFFaceFeature feature"
+    ],
+    "custom": false
+  },
+  "HFFeatureHubDataEnable": {
+    "return": "long",
+    "arguments": [
+      "HFFeatureHubConfiguration configuration"
+    ],
+    "custom": false
+  },
+  "HFFeatureHubDataDisable": {
+    "return": "long",
+    "arguments": [],
+    "custom": false
+  },
+  "HFFeatureHubFaceSearchThresholdSetting": {
+    "return": "long",
+    "arguments": [
+      "float threshold"
+    ],
+    "custom": false
+  },
+  "HFFaceComparison": {
+    "return": "long",
+    "arguments": [
+      "HFFaceFeature feature1",
+      "HFFaceFeature feature2",
+      "float[] result"
+    ],
+    "custom": false
+  },
+  "HFGetRecommendedCosineThreshold": {
+    "return": "long",
+    "arguments": [
+      "float[] threshold"
+    ],
+    "custom": false
+  },
+  "HFCosineSimilarityConvertToPercentage": {
+    "return": "long",
+    "arguments": [
+      "float similarity",
+      "float[] result"
+    ],
+    "custom": false
+  },
+  "HFUpdateCosineSimilarityConverter": {
+    "return": "long",
+    "arguments": [
+      "HFSimilarityConverterConfig config"
+    ],
+    "custom": false
+  },
+  "HFGetCosineSimilarityConverter": {
+    "return": "long",
+    "arguments": [
+      "HFSimilarityConverterConfig config"
+    ],
+    "custom": false
+  },
+  "HFGetFeatureLength": {
+    "return": "long",
+    "arguments": [
+      "int[] num"
+    ],
+    "custom": false
+  },
+  "HFFeatureHubInsertFeature": {
+    "return": "long",
+    "arguments": [
+      "HFFaceFeatureIdentity featureIdentity",
+      "long[] allocId"
+    ],
+    "custom": false
+  },
+  "HFFeatureHubFaceSearch": {
+    "return": "long",
+    "arguments": [
+      "HFFaceFeature searchFeature",
+      "float[] confidence",
+      "HFFaceFeatureIdentity mostSimilar"
+    ],
+    "custom": false
+  },
+  "HFFeatureHubFaceSearchV2": {
+    "return": "long",
+    "arguments": [
+      "HFFaceFeature searchFeature",
+      "HFFeatureHubSearchResultV2 result"
+    ],
+    "custom": false
+  },
+  "HFFeatureHubFaceSearchTopK": {
+    "return": "long",
+    "arguments": [
+      "HFFaceFeature searchFeature",
+      "int topK",
+      "HFSearchTopKResults results"
+    ],
+    "custom": false
+  },
+  "HFFeatureHubFaceRemove": {
+    "return": "long",
+    "arguments": [
+      "long id"
+    ],
+    "custom": false
+  },
+  "HFFeatureHubFaceUpdate": {
+    "return": "long",
+    "arguments": [
+      "HFFaceFeatureIdentity featureIdentity"
+    ],
+    "custom": false
+  },
+  "HFFeatureHubGetFaceIdentity": {
+    "return": "long",
+    "arguments": [
+      "long customId",
+      "HFFaceFeatureIdentity identity"
+    ],
+    "custom": false
+  },
+  "HFFeatureHubGetFaceCount": {
+    "return": "long",
+    "arguments": [
+      "int[] count"
+    ],
+    "custom": false
+  },
+  "HFFeatureHubViewDBTable": {
+    "return": "long",
+    "arguments": [],
+    "custom": false
+  },
+  "HFFeatureHubGetExistingIds": {
+    "return": "long",
+    "arguments": [
+      "HFFeatureHubExistingIds ids"
+    ],
+    "custom": false
+  },
+  "HFMultipleFacePipelineProcess": {
+    "return": "long",
+    "arguments": [
+      "long session",
+      "long streamHandle",
+      "HFMultipleFaceData faces",
+      "HFSessionCustomParameter parameter"
+    ],
+    "custom": false
+  },
+  "HFMultipleFacePipelineProcessOptional": {
+    "return": "long",
+    "arguments": [
+      "long session",
+      "long streamHandle",
+      "HFMultipleFaceData faces",
+      "int customOption"
+    ],
+    "custom": false
+  },
+  "HFGetRGBLivenessConfidence": {
+    "return": "long",
+    "arguments": [
+      "long session",
+      "HFRGBLivenessConfidence confidence"
+    ],
+    "custom": false
+  },
+  "HFGetFaceMaskConfidence": {
+    "return": "long",
+    "arguments": [
+      "long session",
+      "HFFaceMaskConfidence confidence"
+    ],
+    "custom": false
+  },
+  "HFGetFaceQualityConfidence": {
+    "return": "long",
+    "arguments": [
+      "long session",
+      "HFFaceQualityConfidence confidence"
+    ],
+    "custom": false
+  },
+  "HFFaceQualityDetect": {
+    "return": "long",
+    "arguments": [
+      "long session",
+      "HFFaceBasicToken singleFace",
+      "float[] confidence"
+    ],
+    "custom": false
+  },
+  "HFGetFaceInteractionStateResult": {
+    "return": "long",
+    "arguments": [
+      "long session",
+      "HFFaceInteractionState result"
+    ],
+    "custom": false
+  },
+  "HFGetFaceInteractionActionsResult": {
+    "return": "long",
+    "arguments": [
+      "long session",
+      "HFFaceInteractionsActions actions"
+    ],
+    "custom": false
+  },
+  "HFGetFaceAttributeResult": {
+    "return": "long",
+    "arguments": [
+      "long session",
+      "HFFaceAttributeResult results"
+    ],
+    "custom": false
+  },
+  "HFGetFaceEmotionResult": {
+    "return": "long",
+    "arguments": [
+      "long session",
+      "HFFaceEmotionResult result"
+    ],
+    "custom": false
+  },
+  "HFQueryInspireFaceVersion": {
+    "return": "long",
+    "arguments": [
+      "HFInspireFaceVersion version"
+    ],
+    "custom": false
+  },
+  "HFQueryCAPILevel": {
+    "return": "int",
+    "arguments": [
+      "int[] apiLevel"
+    ],
+    "custom": false
+  },
+  "HFQueryInspireFaceComponentVersion": {
+    "return": "long",
+    "arguments": [
+      "int component",
+      "HFComponentVersion version"
+    ],
+    "custom": false
+  },
+  "HFQueryInspireFaceComponentVersions": {
+    "return": "long",
+    "arguments": [
+      "ByteBuffer buffer",
+      "int bufferSize",
+      "int[] requiredSize"
+    ],
+    "custom": false
+  },
+  "HFQueryInspireFaceDiagnosticInformation": {
+    "return": "long",
+    "arguments": [
+      "ByteBuffer buffer",
+      "int bufferSize",
+      "int[] requiredSize"
+    ],
+    "custom": false
+  },
+  "HFQueryInspireFaceExtendedInformation": {
+    "return": "long",
+    "arguments": [
+      "HFInspireFaceExtendedInformation information"
+    ],
+    "custom": false
+  },
+  "HFSetLogLevel": {
+    "return": "long",
+    "arguments": [
+      "int level"
+    ],
+    "custom": false
+  },
+  "HFLogDisable": {
+    "return": "long",
+    "arguments": [],
+    "custom": false
+  },
+  "HFLogPrint": {
+    "return": "long",
+    "arguments": [
+      "int level",
+      "String format"
+    ],
+    "custom": false
+  },
+  "HFDeBugImageStreamImShow": {
+    "return": "void",
+    "arguments": [
+      "long streamHandle"
+    ],
+    "custom": false
+  },
+  "HFDeBugImageStreamDecodeSave": {
+    "return": "long",
+    "arguments": [
+      "long streamHandle",
+      "String savePath"
+    ],
+    "custom": false
+  },
+  "HFDeBugShowResourceStatistics": {
+    "return": "long",
+    "arguments": [],
+    "custom": false
+  },
+  "HFDeBugGetUnreleasedSessionsCount": {
+    "return": "long",
+    "arguments": [
+      "int[] count"
+    ],
+    "custom": false
+  },
+  "HFDeBugGetUnreleasedSessions": {
+    "return": "long",
+    "arguments": [
+      "long[] sessions",
+      "int count"
+    ],
+    "custom": false
+  },
+  "HFDeBugGetUnreleasedStreamsCount": {
+    "return": "long",
+    "arguments": [
+      "int[] count"
+    ],
+    "custom": false
+  },
+  "HFDeBugGetUnreleasedStreams": {
+    "return": "long",
+    "arguments": [
+      "long[] streams",
+      "int count"
+    ],
+    "custom": false
+  }
+}

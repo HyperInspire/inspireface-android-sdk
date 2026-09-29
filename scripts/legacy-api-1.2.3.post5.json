@@ -1,0 +1,248 @@
+{
+  "version": "1.2.3.post5",
+  "source_commit": "5ef419c4a413d369fe1f8281cec9cc46e8da4e09",
+  "classes": {
+    "com/insightface/sdk/inspireface/InspireFace.java": [
+      "public class InspireFace extends TypeDefine",
+      "public static Bitmap GetFaceAlignmentImage(Session,ImageStream,FaceBasicToken)",
+      "public static Boolean GlobalLaunch(Context,String)",
+      "public static CustomParameter CreateCustomParameter()",
+      "public static CustomParameter CreateCustomParameter(boolean,boolean,boolean,boolean,boolean,boolean,boolean,boolean)",
+      "public static FaceAttributeResult GetFaceAttributeResult(Session)",
+      "public static FaceEmotionResult GetFaceEmotionResult(Session)",
+      "public static FaceFeature ExtractFaceFeature(Session,ImageStream,FaceBasicToken)",
+      "public static FaceFeatureIdentity FeatureHubFaceSearch(FaceFeature)",
+      "public static FaceFeatureIdentity FeatureHubGetFaceIdentity(long)",
+      "public static FaceInteractionState GetFaceInteractionStateResult(Session)",
+      "public static FaceInteractionsActions GetFaceInteractionActionsResult(Session)",
+      "public static FaceMaskConfidence GetFaceMaskConfidence(Session)",
+      "public static FaceQualityConfidence GetFaceQualityConfidence(Session)",
+      "public static FeatureHubConfiguration CreateFeatureHubConfiguration()",
+      "public static FeatureHubConfiguration CreateFeatureHubConfiguration(int,boolean,String,float,int)",
+      "public static ImageStream CreateImageStreamFromBitmap(Bitmap,int)",
+      "public static ImageStream CreateImageStreamFromByteBuffer(byte[],int,int,int,int)",
+      "public static InspireFaceVersion QueryInspireFaceVersion()",
+      "public static MultipleFaceData ExecuteFaceTrack(Session,ImageStream)",
+      "public static Point2f[] GetFaceDenseLandmarkFromFaceToken(FaceBasicToken)",
+      "public static RGBLivenessConfidence GetRGBLivenessConfidence(Session)",
+      "public static SearchTopKResults FeatureHubFaceSearchTopK(FaceFeature,int)",
+      "public static Session CreateSession(CustomParameter,int,int,int,int)",
+      "public static SimilarityConverterConfig GetCosineSimilarityConverter()",
+      "public static String copyResourceFileToApplicationDir(Context)",
+      "public static boolean FeatureHubDataDisable()",
+      "public static boolean FeatureHubDataEnable(FeatureHubConfiguration)",
+      "public static boolean FeatureHubFaceRemove(long)",
+      "public static boolean FeatureHubFaceUpdate(FaceFeatureIdentity)",
+      "public static boolean FeatureHubInsertFeature(FaceFeatureIdentity)",
+      "public static boolean GlobalLaunch(String)",
+      "public static boolean GlobalReload(String)",
+      "public static boolean GlobalTerminate()",
+      "public static boolean MultipleFacePipelineProcess(Session,ImageStream,MultipleFaceData,CustomParameter)",
+      "public static boolean QueryLaunchStatus()",
+      "public static float CosineSimilarityConvertToPercentage(float)",
+      "public static float FaceComparison(FaceFeature,FaceFeature)",
+      "public static float GetRecommendedCosineThreshold()",
+      "public static int FeatureHubGetFaceCount()",
+      "public static int GetFeatureLength()",
+      "public static void FeatureHubFaceSearchThresholdSetting(float)",
+      "public static void ReleaseImageStream(ImageStream)",
+      "public static void ReleaseSession(Session)",
+      "public static void SetFaceDetectThreshold(Session,float)",
+      "public static void SetFilterMinimumFacePixelSize(Session,int)",
+      "public static void SetLogLevel(int)",
+      "public static void SetTrackModeDetectInterval(Session,int)",
+      "public static void SetTrackModeNumSmoothCacheFrame(Session,int)",
+      "public static void SetTrackModeSmoothRatio(Session,float)",
+      "public static void SetTrackPreviewSize(Session,int)",
+      "public static void UpdateCosineSimilarityConverter(SimilarityConverterConfig)",
+      "public static void WriteImageStreamToFile(ImageStream,String)"
+    ],
+    "com/insightface/sdk/inspireface/base/CustomParameter.java": [
+      "public CustomParameter enableFaceAttribute(boolean)",
+      "public CustomParameter enableFaceEmotion(boolean)",
+      "public CustomParameter enableFacePose(boolean)",
+      "public CustomParameter enableFaceQuality(boolean)",
+      "public CustomParameter enableInteractionLiveness(boolean)",
+      "public CustomParameter enableIrLiveness(boolean)",
+      "public CustomParameter enableLiveness(boolean)",
+      "public CustomParameter enableMaskDetect(boolean)",
+      "public CustomParameter enableRecognition(boolean)",
+      "public CustomParameter()",
+      "public class CustomParameter",
+      "public int enableFaceAttribute",
+      "public int enableFaceEmotion",
+      "public int enableFacePose",
+      "public int enableFaceQuality",
+      "public int enableInteractionLiveness",
+      "public int enableIrLiveness",
+      "public int enableLiveness",
+      "public int enableMaskDetect",
+      "public int enableRecognition"
+    ],
+    "com/insightface/sdk/inspireface/base/FaceAttributeResult.java": [
+      "public class FaceAttributeResult",
+      "public int num",
+      "public int[] ageBracket",
+      "public int[] gender",
+      "public int[] race"
+    ],
+    "com/insightface/sdk/inspireface/base/FaceBasicToken.java": [
+      "public FaceBasicToken()",
+      "public byte[] data",
+      "public class FaceBasicToken",
+      "public int size"
+    ],
+    "com/insightface/sdk/inspireface/base/FaceEmotionResult.java": [
+      "public class FaceEmotionResult",
+      "public int num",
+      "public int[] emotion"
+    ],
+    "com/insightface/sdk/inspireface/base/FaceEulerAngle.java": [
+      "public FaceEulerAngle()",
+      "public class FaceEulerAngle",
+      "public float pitch",
+      "public float roll",
+      "public float yaw"
+    ],
+    "com/insightface/sdk/inspireface/base/FaceFeature.java": [
+      "public class FaceFeature",
+      "public float[] data"
+    ],
+    "com/insightface/sdk/inspireface/base/FaceFeatureIdentity.java": [
+      "public FaceFeature feature",
+      "public class FaceFeatureIdentity",
+      "public float searchConfidence",
+      "public long id",
+      "public static FaceFeatureIdentity create(long,FaceFeature)"
+    ],
+    "com/insightface/sdk/inspireface/base/FaceInteractionState.java": [
+      "public class FaceInteractionState",
+      "public float[] leftEyeStatusConfidence",
+      "public float[] rightEyeStatusConfidence",
+      "public int num"
+    ],
+    "com/insightface/sdk/inspireface/base/FaceInteractionsActions.java": [
+      "public class FaceInteractionsActions",
+      "public int num",
+      "public int[] blink",
+      "public int[] headRaise",
+      "public int[] jawOpen",
+      "public int[] normal",
+      "public int[] shake"
+    ],
+    "com/insightface/sdk/inspireface/base/FaceMaskConfidence.java": [
+      "public class FaceMaskConfidence",
+      "public float[] confidence",
+      "public int num"
+    ],
+    "com/insightface/sdk/inspireface/base/FaceQualityConfidence.java": [
+      "public class FaceQualityConfidence",
+      "public float[] confidence",
+      "public int num"
+    ],
+    "com/insightface/sdk/inspireface/base/FaceRect.java": [
+      "public FaceRect()",
+      "public class FaceRect",
+      "public int height",
+      "public int width",
+      "public int x",
+      "public int y"
+    ],
+    "com/insightface/sdk/inspireface/base/FeatureHubConfiguration.java": [
+      "public FeatureHubConfiguration setEnablePersistence(boolean)",
+      "public FeatureHubConfiguration setPersistenceDbPath(String)",
+      "public FeatureHubConfiguration setPrimaryKeyMode(int)",
+      "public FeatureHubConfiguration setSearchMode(int)",
+      "public FeatureHubConfiguration setSearchThreshold(float)",
+      "public String persistenceDbPath",
+      "public class FeatureHubConfiguration",
+      "public float searchThreshold",
+      "public int enablePersistence",
+      "public int primaryKeyMode",
+      "public int searchMode"
+    ],
+    "com/insightface/sdk/inspireface/base/ImageStream.java": [
+      "public class ImageStream",
+      "public long handle"
+    ],
+    "com/insightface/sdk/inspireface/base/InspireFaceVersion.java": [
+      "public class InspireFaceVersion",
+      "public int major",
+      "public int minor",
+      "public int patch"
+    ],
+    "com/insightface/sdk/inspireface/base/MultipleFaceData.java": [
+      "public FaceBasicToken[] tokens",
+      "public FaceEulerAngle[] angles",
+      "public FaceRect[] rects",
+      "public class MultipleFaceData",
+      "public float[] detConfidence",
+      "public int detectedNum",
+      "public int[] trackIds"
+    ],
+    "com/insightface/sdk/inspireface/base/Point2f.java": [
+      "public class Point2f",
+      "public float x",
+      "public float y"
+    ],
+    "com/insightface/sdk/inspireface/base/RGBLivenessConfidence.java": [
+      "public class RGBLivenessConfidence",
+      "public float[] confidence",
+      "public int num"
+    ],
+    "com/insightface/sdk/inspireface/base/SearchTopKResults.java": [
+      "public class SearchTopKResults",
+      "public float[] confidence",
+      "public int num",
+      "public long[] ids"
+    ],
+    "com/insightface/sdk/inspireface/base/Session.java": [
+      "public class Session",
+      "public long handle"
+    ],
+    "com/insightface/sdk/inspireface/base/SimilarityConverterConfig.java": [
+      "public class SimilarityConverterConfig",
+      "public float middleScore",
+      "public float outputMax",
+      "public float outputMin",
+      "public float steepness",
+      "public float threshold"
+    ],
+    "com/insightface/sdk/inspireface/base/TypeDefine.java": [
+      "public class TypeDefine",
+      "public static final String INSPIREFACE_IN_ASSETS_FOLDER_NAME",
+      "public static final String MEGATRON",
+      "public static final String PIKACHU",
+      "public static final int CAMERA_ROTATION_0",
+      "public static final int CAMERA_ROTATION_180",
+      "public static final int CAMERA_ROTATION_270",
+      "public static final int CAMERA_ROTATION_90",
+      "public static final int DETECT_MODE_ALWAYS_DETECT",
+      "public static final int DETECT_MODE_LIGHT_TRACK",
+      "public static final int DETECT_MODE_TRACK_BY_DETECTION",
+      "public static final int LOG_DEBUG",
+      "public static final int LOG_FATAL",
+      "public static final int LOG_INFO",
+      "public static final int LOG_NONE",
+      "public static final int LOG_WARN",
+      "public static final int PK_AUTO_INCREMENT",
+      "public static final int PK_MANUAL_INPUT",
+      "public static final int SEARCH_MODE_EAGER",
+      "public static final int SEARCH_MODE_EXHAUSTIVE",
+      "public static final int STREAM_BGR",
+      "public static final int STREAM_BGRA",
+      "public static final int STREAM_RGB",
+      "public static final int STREAM_RGBA",
+      "public static final int STREAM_YUV_NV12",
+      "public static final int STREAM_YUV_NV21"
+    ],
+    "com/insightface/sdk/inspireface/utils/SDKUtils.java": [
+      "public String saveBitmap(String,String,Bitmap)",
+      "public boolean cropperBitmap(Bitmap,int[],String,String)",
+      "public class SDKUtils",
+      "public static Bitmap getImageFromAssetsFile(Context,String)",
+      "public void copyFilesFromAssets(Context,String,String)",
+      "public void mkdirsFeaturesAssets(Context,String,String,String)"
+    ]
+  }
+}

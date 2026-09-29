@@ -31,6 +31,10 @@ public class TypeDefine {
     public static final int STREAM_YUV_NV12 = 4;
     /** Image in YUV NV21 format */
     public static final int STREAM_YUV_NV21 = 5;
+    /** Planar YUV I420; width and height must be even. */
+    public static final int STREAM_I420 = 6;
+    /** Single-channel grayscale image. */
+    public static final int STREAM_GRAY = 7;
 
     /** Image detection mode, always detect, applicable to images. */
     public static final int DETECT_MODE_ALWAYS_DETECT = 0;
@@ -57,6 +61,8 @@ public class TypeDefine {
     public static final int LOG_INFO = 2;
     /** Warning level for non-critical issues that might need attention */
     public static final int LOG_WARN = 3;
-    /** Error level for error events that might still allow the application to continue running */
+    /** Error level for recoverable errors. */
+    public static final int LOG_ERROR = 4;
+    /** Fatal level for critical failures. */
     public static final int LOG_FATAL = 5;
 }
